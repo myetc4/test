@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>云控</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="云控相关文档">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+  <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
+  <!--<link rel="stylesheet" href="//unpkg.com/docsify/themes/dark.css">-->
+
+</head>
+<style>
+
+  .test{
+  }
+</style>
+
+<body>
+<div id="app">加载中</div>
+  <script>
+      Date.prototype.Format = function(fmt)
+      { //author: meizz
+          var o = {
+              "M+" : this.getMonth()+1,                 //月份
+              "d+" : this.getDate(),                    //日
+              "h+" : this.getHours(),                   //小时
+              "m+" : this.getMinutes(),                 //分
+              "s+" : this.getSeconds(),                 //秒
+              "q+" : Math.floor((this.getMonth()+3)/3), //季度
+              "S"  : this.getMilliseconds()             //毫秒
+          };
+          if(/(y+)/.test(fmt))
+              fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+          for(var k in o)
+              if(new RegExp("("+ k +")").test(fmt))
+                  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+          return fmt;
+      }
+      window.$docsify = {
+        name: '云控',
+        loadNavbar: true,
+        coverpage: true,
+        repo: 'https://github.com/docsifyjs/docsify/',
+        auto2top: true,
+        loadSidebar: true,
+        homepage: 'home.md',
+        autoHeader: true,
+        noEmoji: true,
+        routerMode: 'hash',
+        notFoundPage: 'my404.md',
+        themeColor:"#42b983",
+          // 完整配置参数
+          search: {
+              maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+              paths: [], // or 'auto'
+              placeholder: 'Type to search',
+
+              // 支持本地化
+              placeholder: {
+                  '/': '搜索'
+              },
+
+              noData: 'No Results!',
+
+              // 支持本地化
+              noData: {
+                  '/': '找不到结果'
+              },
+
+              // 搜索标题的最大程级, 1 - 6
+              depth: 2
+          },
+
+          formatUpdated: function(time) {
+            // ...
+            return '当前API更新时间'+(new Date()).Format("yyyy-MM-dd hh:mm");
+        },
+
+    }
+      if (typeof navigator.serviceWorker !== 'undefined') {
+          navigator.serviceWorker.register('sw.js')
+      }
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+
+<script src="//unpkg.com/prismjs/components/prism-bash.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-javascript.min.js"></script>
+</body>
+</html>
+
